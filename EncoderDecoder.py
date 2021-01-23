@@ -1,12 +1,12 @@
+# This is Transformer Code by RAMIT PAHWA
+# This is insipired by the implementation by https://nlp.seas.harvard.edu/2018/04/03/attention.html
+
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math, copy, time
 from torch.autograd import Variable
-import matplotlib.pyplot as plt
-import seaborn
-seaborn.set_context(context="talk")
 
 class EncoderDecoder(nn.Module):
     """
@@ -31,7 +31,12 @@ class EncoderDecoder(nn.Module):
         return self.decode(self.encode(src, src_mask), src_mask, tgt, tgt_mask)
 
     def encode(self, src, src_mask):
+        "Encode Model"
         return self.encoder(self.src_embed(src), src_mask)
 
     def decode(self, encode, src_mask, tgt, tgt_mask):
+        "Decoder Model"
         return self.decoder(self.tgt_embed(tgt), encode, src_mask, tgt_mask)
+
+# Questions 
+# why doe we need source mask for decoding ?
